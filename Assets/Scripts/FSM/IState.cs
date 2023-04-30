@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface IState
 {
-    public void EnterState(IContext context);
+    public void EnterState(Context context);
 
-    public void ExitState(IContext context);
+    public void ExitState(Context context);
 }

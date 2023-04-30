@@ -1,17 +1,21 @@
 
-public abstract class StateController :  IContext
+using UnityEngine;
+
+public class StateController : MonoBehaviour
 {
-    public override void SetState(IState newState)
+    public Context Context;
+
+    public void SetState(IState newState)
     {
-        m_currentState?.ExitState(this);
-        m_currentState = newState;
-        m_currentState.EnterState(this);
+        Context.CurrentState?.ExitState(Context);
+        Context.CurrentState = newState;
+        Context.CurrentState.EnterState(Context);
     }
 }
 
-public abstract class IContext
+public class Context
 {
     public IStateAction PlayerStateAction;
-    public virtual void SetState(IState newState){}
-    protected IState m_currentState;
+    public IState CurrentState;
+    public Timer Timer;
 }

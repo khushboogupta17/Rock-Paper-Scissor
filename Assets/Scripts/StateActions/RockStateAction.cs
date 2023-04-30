@@ -1,13 +1,10 @@
 
-    using System;
-    using DefaultNamespace;
     using UnityEngine;
-
-
+    
     public class RockStateAction : IStateAction
     {
         
-        public void Execute(IContext context)
+        public void Execute(Context context)
         {
             Debug.Log("Opponent is rock");
             switch (context.PlayerStateAction.ToString())
@@ -25,6 +22,6 @@
                     break;
             }
             
-            (new ComputerStateController()).SetState(new WaitState());
+            ComputerStateController.Instance.SetComputerIdleStateWithADelay(1f);
         }
     }

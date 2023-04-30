@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IStateAction
 {
-    public void Execute(IContext context);
+    public void Execute(Context context);
 }

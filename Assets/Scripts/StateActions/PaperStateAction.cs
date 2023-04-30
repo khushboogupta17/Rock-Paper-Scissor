@@ -3,7 +3,7 @@
 
     public class PaperStateAction : IStateAction
     {
-        public void Execute(IContext context)
+        public void Execute(Context context)
         {
             Debug.Log("Opponent is paper");
             switch (context.PlayerStateAction.ToString())
@@ -21,6 +21,6 @@
                     break;
             }
 
-            (new ComputerStateController()).SetState(new WaitState());
+            ComputerStateController.Instance.SetComputerIdleStateWithADelay(1f);
         }
     }
