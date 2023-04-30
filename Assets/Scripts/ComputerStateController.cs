@@ -5,7 +5,8 @@
     public class ComputerStateController : StateController
     {
         public static ComputerStateController Instance;
-        public GameEvent OnIdleStateEnter;
+        public GameEvent OnIdleStateEnterGE;
+        public GameEvent OnComputerPlayedGE;
 
         private void Awake()
         {
@@ -13,21 +14,22 @@
             {
                 Instance = this;
             }
-
-            Context = new Context();
+            
+            OnComputerPlayed = OnComputerPlayedGE;
+            OnIdleStateEnter = OnIdleStateEnterGE;
            SetComputerIdleStateWithADelay(0.2f);
         }
 
         public void SetPlayerStateActionAndSetComputerToPlay(IStateAction playerNewStateAction)
         {
-            Context.PlayerStateAction = playerNewStateAction;
+            PlayerStateAction = playerNewStateAction;
             SetComputerPlayState();
            
         }
 
         public void SetComputerPlayState()
         {
-            if (Context.CurrentState.ToString() != nameof(TimeUpState))
+            if (CurrentState.ToString() != nameof(TimeUpState))
             {
                 base.SetState(new PlayState());
             }
@@ -47,7 +49,6 @@
 
         private void SetIdleState()
         {
-            OnIdleStateEnter.Raise();
             base.SetState(new IdleState());
         }
         

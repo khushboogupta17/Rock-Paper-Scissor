@@ -6,8 +6,7 @@
     {
         public void EnterState(Context context)
         {
-           //block all player inputs
-           Debug.Log("Time up state, restarting game");
+            Debug.Log("Time up state, restarting game");
            ComputerStateController.Instance.SetComputerIdleStateWithADelay(0.5f);
           
         }

@@ -14,10 +14,15 @@ public class PlayState : IState
             m_stateActionsList = GameDatabase.NameToStateActionMaps.Values.ToList();
             int randomInd = Random.Range(0, m_stateActionsList.Count);
             m_stateActionsList[randomInd].Execute(context);
+            ComputerStateController.Instance.SetComputerIdleStateWithADelay(2f);
+            context.ComputerStateAction = m_stateActionsList[randomInd];
+            context.OnComputerPlayed.Raise();
         }
 
         public void ExitState(Context context)
         {
-            
+            context.ComputerStateAction = null;
+            context.PlayerStateAction = null;
+            context.PlayerRoundResult = Context.RoundResult.Default;
         }
 }
